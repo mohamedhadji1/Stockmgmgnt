@@ -1,0 +1,107 @@
+<body class="account-page">
+  <div id="global-loader">
+    <div class="whirly-loader"> </div>
+  </div>
+
+  <div class="main-wrapper">
+    <div class="account-content">
+      <div class="login-wrapper bg-img">
+        <div class="login-content">
+          <form (submit)="login($event)">
+            <div class="login-userset">
+              <div class="login-logo logo-normal">
+                <img src="assets/img/logo.png" alt="Logo">
+              </div>
+              <a href="index.html" class="login-logo logo-white">
+                <img src="assets/img/logo-white.png" alt="White Logo">
+              </a>
+              <div class="login-userheading">
+                <h3>Sign In</h3>
+                <h4>Access the Dreamspos panel using your email and passcode.</h4>
+              </div>
+              <div class="form-login mb-3">
+                <label class="form-label">Email Address</label>
+                <div class="form-addons">
+                  <input type="text" class="form-control" [(ngModel)]="email" name="email">
+                  <img src="assets/img/icons/mail.svg" alt="Email Icon">
+                </div>
+              </div>
+              <div class="form-login mb-3">
+                <label class="form-label">Password</label>
+                <div class="pass-group">
+                  <input type="password" class="form-control" [(ngModel)]="password" name="password">
+                  <span class="fas toggle-password fa-eye-slash"></span>
+                </div>
+              </div>
+              <div class="form-login authentication-check">
+                <div class="row">
+                  <div class="col-12 d-flex align-items-center justify-content-between">
+                    <div class="custom-control custom-checkbox">
+                      <label class="checkboxs ps-4 mb-0 pb-0 line-height-1">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="checkmark"></span>Remember me
+                      </label>
+                    </div>
+                    <div class="text-end">
+                      <a class="forgot-link" href="forgot-password.html">Forgot Password?</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-login">
+                <button type="submit" class="btn btn-login">Sign In</button>
+              </div>
+              <div class="signinform">
+                <h4>New on our platform?<a [routerLink]="['/register']" class="hover-a"> Create an account</a></h4>
+              </div>
+              <div class="form-setlogin or-text">
+                <h4>OR</h4>
+              </div>
+              <div class="form-sociallink">
+                <ul class="d-flex">
+                  <li>
+                    <a href="javascript:void(0);" class="facebook-logo">
+                      <img src="assets/img/icons/facebook-logo.svg" alt="Facebook">
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);">
+                      <img src="assets/img/icons/google.png" alt="Google">
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);" class="apple-logo">
+                      <img src="assets/img/icons/apple-logo.svg" alt="Apple">
+                    </a>
+                  </li>
+                </ul>
+                <div class="my-4 d-flex justify-content-center align-items-center copyright-text">
+                  <p>Copyright &copy; 2023 DreamsPOS. All rights reserved</p>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="customizer-links" id="setdata">
+    <ul class="sticky-sidebar">
+      <li class="sidebar-icons">
+        <a href="#" class="navigation-add" data-bs-toggle="tooltip" data-bs-placement="left"
+          data-bs-original-title="Theme">
+          <i data-feather="settings" class="feather-five"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <script src="assets/js/jquery-3.7.1.min.js" type="c220e3b77fbc80f69b72b4a9-text/javascript"></script>
+  <script src="assets/js/feather.min.js" type="c220e3b77fbc80f69b72b4a9-text/javascript"></script>
+  <script src="assets/js/bootstrap.bundle.min.js" type="c220e3b77fbc80f69b72b4a9-text/javascript"></script>
+  <script src="assets/js/theme-script.js" type="c220e3b77fbc80f69b72b4a9-text/javascript"></script>
+  <script src="assets/js/script.js" type="c220e3b77fbc80f69b72b4a9-text/javascript"></script>
+  <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+    data-cf-settings="c220e3b77fbc80f69b72b4a9-|49" defer></script>
+</body>

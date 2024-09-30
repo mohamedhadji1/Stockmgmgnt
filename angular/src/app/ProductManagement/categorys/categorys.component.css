@@ -1,0 +1,16 @@
+/* Darker blue color for Add Category button */
+.add-category-btn {
+    background-color: #003399; /* Darker blue color */
+    border-color: #003399;
+  }
+  
+  .add-category-btn:hover {
+    background-color: #002266; /* Even darker on hover */
+    border-color: #002266;
+  }
+  
+  /* Full width table */
+  .table-responsive {
+    width: 100%;
+  }
+  

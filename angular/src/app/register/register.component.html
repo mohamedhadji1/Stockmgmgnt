@@ -1,0 +1,141 @@
+<body class="account-page">
+  <div id="global-loader">
+      <div class="whirly-loader"> </div>
+  </div>
+
+  <div class="main-wrapper">
+      <div class="account-content">
+          <div class="login-wrapper register-wrap bg-img">
+              <div class="login-content">
+                  <form [formGroup]="userForm" (ngSubmit)="register()">
+                      <div class="login-userset">
+                          <div class="login-logo logo-normal">
+                              <img src="assets/img/logo.png" alt="img">
+                          </div>
+                          <div class="login-userheading">
+                              <h3>Register</h3>
+                              <h4>Create New Dreamspos Account</h4>
+                          </div>
+                          <div *ngIf="errorMessage" class="alert alert-danger"> <!-- {{ edit_4 }} Display error message -->
+                              {{ errorMessage }}
+                          </div>
+                          <div class="form-login">
+                              <label>Username</label>
+                              <div class="form-addons">
+                                  <input type="text" class="form-control" formControlName="username">
+                                  <img src="assets/img/icons/user-icon.svg" alt="img">
+                              </div>
+                              <div *ngIf="userForm.get('username')?.invalid && (userForm.get('username')?.touched || userForm.get('username')?.dirty)">
+                                  <small class="text-danger">Username is required.</small>
+                              </div>
+                          </div>
+                          <div class="form-login">
+                              <label>Email Address</label>
+                              <div class="form-addons">
+                                  <input type="email" class="form-control" formControlName="email">
+                                  <img src="assets/img/icons/mail.svg" alt="img">
+                              </div>
+                              <div *ngIf="userForm.get('email')?.invalid && (userForm.get('email')?.touched || userForm.get('email')?.dirty)">
+                                  <small class="text-danger">Valid email is required.</small>
+                              </div>
+                          </div>
+                          <div class="form-login">
+                              <label>Password</label>
+                              <div class="pass-group">
+                                  <input type="password" class="pass-input" formControlName="password">
+                                  <span class="fas toggle-password fa-eye-slash"></span>
+                              </div>
+                              <div *ngIf="userForm.get('password')?.invalid && (userForm.get('password')?.touched || userForm.get('password')?.dirty)">
+                                  <small class="text-danger">Password must be at least 6 characters.</small>
+                              </div>
+                          </div>
+                          <div class="form-login">
+                              <label>Phone Number</label>
+                              <div class="form-addons">
+                                  <input type="text" class="form-control" formControlName="numtel">
+                                  <img src="assets/img/icons/phone-icon.svg" alt="img">
+                              </div>
+                              <div *ngIf="userForm.get('numtel')?.invalid && (userForm.get('numtel')?.touched || userForm.get('numtel')?.dirty)">
+                                  <small class="text-danger">Phone number must be exactly 8 digits.</small>
+                              </div>
+                          </div>
+                          <div class="form-login">
+                              <label>Confirm Password</label>
+                              <div class="pass-group">
+                                  <input type="password" class="pass-inputs" formControlName="confirmPassword">
+                                  <span class="fas toggle-passwords fa-eye-slash"></span>
+                              </div>
+                              <div *ngIf="userForm.hasError('mismatch') && (userForm.get('confirmPassword')?.touched || userForm.get('confirmPassword')?.dirty)">
+                                  <small class="text-danger">Passwords do not match.</small>
+                              </div>
+                              <div *ngIf="userForm.get('confirmPassword')?.invalid && (userForm.get('confirmPassword')?.touched || userForm.get('confirmPassword')?.dirty)">
+                                  <small class="text-danger">Confirm password is required.</small>
+                              </div>
+                          </div>
+                          <div class="form-login authentication-check">
+                              <div class="row">
+                                  <div class="col-sm-8">
+                                      <div class="custom-control custom-checkbox justify-content-start">
+                                          <label class="checkboxs ps-4 mb-0 pb-0 line-height-1">
+                                              <input type="checkbox" required>
+                                              <span class="checkmarks"></span>I agree to the <a href="#" class="hover-a">Terms & Privacy</a>
+                                          </label>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="form-login">
+                              <button type="submit" class="btn btn-login" [disabled]="userForm.invalid">Sign Up</button>
+                          </div>
+                          <div class="signinform">
+                              <h4>Already have an account? <a [routerLink]="['/login']" class="hover-a">Sign In Instead</a></h4>
+                          </div>
+                          <div class="form-setlogin or-text">
+                              <h4>OR</h4>
+                          </div>
+                          <div class="form-sociallink">
+                              <ul class="d-flex">
+                                  <li>
+                                      <a href="javascript:void(0);" class="facebook-logo">
+                                          <img src="assets/img/icons/facebook-logo.svg" alt="Facebook">
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="javascript:void(0);">
+                                          <img src="assets/img/icons/google.png" alt="Google">
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="javascript:void(0);" class="apple-logo">
+                                          <img src="assets/img/icons/apple-logo.svg" alt="Apple">
+                                      </a>
+                                  </li>
+                              </ul>
+                          </div>
+                          <div class="my-4 d-flex justify-content-center align-items-center copyright-text">
+                              <p>Copyright &copy; 2023 DreamsPOS. All rights reserved</p>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="customizer-links" id="setdata">
+      <ul class="sticky-sidebar">
+          <li class="sidebar-icons">
+              <a href="#" class="navigation-add" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Theme">
+                  <i data-feather="settings" class="feather-five"></i>
+              </a>
+          </li>
+      </ul>
+  </div>
+
+  <script src="assets/js/jquery-3.7.1.min.js" type="c5417e5326502c6d8f4cfe00-text/javascript"></script>
+  <script src="assets/js/feather.min.js" type="c5417e5326502c6d8f4cfe00-text/javascript"></script>
+  <script src="assets/js/bootstrap.bundle.min.js" type="c5417e5326502c6d8f4cfe00-text/javascript"></script>
+  <script src="assets/js/theme-script.js" type="c5417e5326502c6d8f4cfe00-text/javascript"></script>
+  <script src="assets/js/script.js" type="c5417e5326502c6d8f4cfe00-text/javascript"></script>
+  <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="c5417e5326502c6d8f4cfe00-|49" defer></script>
+  </body>

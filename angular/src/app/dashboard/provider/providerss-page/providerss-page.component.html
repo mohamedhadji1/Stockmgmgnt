@@ -1,0 +1,167 @@
+
+    <!-- Dashboard -->
+    <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+      <!-- Vertical Navbar -->
+      <app-navigation-bar></app-navigation-bar>
+  
+      <!-- Main content -->
+      <div class="h-screen flex-grow-1 overflow-y-lg-auto" style="padding-top: 40px;">
+  
+  
+        <!-- Main -->
+        <main class="py-6 bg-surface-secondary">
+          <div class="container-fluid">
+  
+  
+  
+  
+            <!-- Suppliers Component -->
+            <div class="main-content">
+              <div class="container mt-4">
+                <div class="row">
+                  <!-- Larger Column for Adding Supplier and Items -->
+                  <div class="col-md-8">
+                    <h2 >Saisir les coordonnées du fournisseur</h2>
+                    
+                    <div class="container mt-4">
+                      <form [formGroup]="supplierForm" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                          <div class="col-md-6 form-group">
+                            <label>Nom du fournisseur</label>
+                            <input formControlName="name" type="text" class="form-control"
+                              placeholder="Entrez le nom du fournisseur" required />
+                          </div>
+                      
+                          <div class="col-md-6 form-group">
+                            <label>Numero du fournisseur</label>
+                            <input formControlName="phoneNumber" type="text" class="form-control"
+                              placeholder="Entrez le numero du fournisseur" required />
+                          </div>
+                        </div>
+                      
+                        <div class="row">
+                          <div class="col-md-6 form-group">
+                            <label>E-mail du fournisseur</label>
+                            <input formControlName="email" type="email" class="form-control"
+                              placeholder="Entrez l'e-mail du fournisseur" />
+                          </div>
+                      
+                          <div class="col-md-6 form-group">
+                            <label>Adresse du fournisseur</label>
+                            <input formControlName="address" type="text" class="form-control"
+                              placeholder="Entrez l'adresse du fournisseur" required />
+                          </div>
+                        </div>
+                      
+                        <button type="submit" class="submit-btn">Soumettre</button>
+                      </form>
+                      
+  
+                      <!-- Display items and selection here -->
+                      <div  class="category-items">
+                        <!-- List items based on the selected category -->
+  
+                       
+                      </div>
+                    </div>
+  
+                    <h2 class="supplier-items" >
+                      Sélectionnez les fournitures fournies par le fournisseur.
+                    </h2>
+                
+  
+                    <div  class="resto-stock">
+                      <!-- Navigation Bar for Item Categories -->
+                      <ul class="nav nav-tabs">
+                        <li class="nav-item" >
+                          <a class="nav-link" [class.active]="">
+                           stock
+                          </a>
+                        </li>
+                      </ul>
+                    
+                      <!-- Items of the selected category -->
+                      <div  class="category-items">
+                        <div class="grid-container">
+                         
+                            <div class="grid-item">
+                              <div class="item-circle">
+                                <img src="../../../../assets/image.png" alt="" width="80px" />
+                                <button [class.red]="" [class.addbtn]="">
+                                  <i class="fas" [class.fa-plus-circle]="" [class.fa-times-circle]=""></i>
+                                </button>
+                              </div>
+                              <i class="fas fa-check check-icon" ></i>
+                              <p>item.name</p>
+                            </div>
+                         
+                        </div>
+                      </div>
+                    
+                      <!-- Pagination Controls -->
+                      <div class="d-flex justify-content-center">
+                        <nav aria-label="Page navigation example">
+                          <ul class="pagination">
+                            <li class="page-item" [class.disabled]="  1">
+                              <a class="page-link">Previous</a>
+                            </li>
+                            <li class="page-item">
+                              <a class="page-link" > 1</a>
+                            </li>
+                            <li class="page-item" >
+                              <a class="page-link">Next</a>
+                            </li>
+                          </ul>
+                        </nav>
+                      </div>
+                    </div>
+                    
+                    
+                    <button type="button" class="submit-btn"
+                     
+                     >
+                       Confirmer
+                    </button>
+  
+  
+                    <button type="button" class="cancel-btn">
+                      Annuler
+                    </button>
+                  </div>
+  
+                  <!--  List of Suppliers -->
+                  <div class="col-md-4">
+                    <h2>Liste des fournisseurs</h2>
+                    <div class="list-group">
+                      <!-- Dynamically list suppliers here -->
+                      <a  class="list-group-item list-group-item-action" *ngFor="let s of providers">
+                        <div> {{ s.name }} 
+                          <i class="fas fa-info info-icon float-right"></i>
+  
+                        </div>
+  
+                        <div class="text-muted"> {{ s.phoneNumber }}</div>
+  
+                      </a>
+                    </div>
+
+  
+  
+  
+  
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+  
+  
+  
+  
+  
+  
+          </div>
+        </main>
+      </div>
+    </div>

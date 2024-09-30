@@ -1,0 +1,617 @@
+
+
+*{
+    font-family:"Inter",sans-serif;
+  }
+  
+  
+  
+  
+  
+  
+  /************ENTETE*****************/
+  .entete h2 {
+    font-family:"Playfair Display",serif;
+    font-weight:700;
+    clear:both;
+    color:#2174EA;
+    word-wrap:break-word;
+    overflow-wrap:break-word;
+    font-size:44px;
+    text-align:center;
+    margin-top:40px
+    }
+  
+    .entete h5 {
+    font-family:"Inter",sans-serif;
+    font-weight:400;
+    clear:both;
+    color:#101d2d;
+    word-wrap:break-word;
+    overflow-wrap:break-word;
+    font-size:24px;
+    text-align:center
+    }
+  
+  
+  
+  /***************************/
+  
+  
+  h2{
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    clear: both;
+    color: #101d2d;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  
+  
+  
+  }
+  .supplier-items{
+    padding: 20px 0 15px 0;
+  }
+  
+   .submit-btn,.del-btn,.modify-btn,.cancel-btn{
+    background-color: #101d2d;
+    border-color: #101d2d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.2s;
+  }
+  .cancel-btn:hover{
+    background-color: #333;
+  }
+  .cancel-btn{
+    background-color: #9b9a9a;
+    border-color: #333;
+    margin-left: 10px;
+  }
+   .submit-btn:hover,
+  .modify-btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  .submit-btn:disabled {
+    background-color: #9b9a9a;
+    border-color: #9b9a9a;
+  }
+  .del-btn{
+    background-color: #b85851;
+    border-color: #99443e;
+  }  
+  .del-btn:hover {
+    background-color: #d85151;
+    border-color: #d85151;
+  }
+  .nav-tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  .category-container {
+    margin-bottom: 2rem;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Creates 5 equal columns */
+    grid-gap: 1rem; /* Space between grid items */
+    margin-bottom: 1rem; /* Adjust as needed for spacing */
+  }
+  
+  .grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem; /* Add bottom margin if needed */
+  }
+  
+  .grid-item .item-circle {
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem; /* Space between image and text */
+    position: relative;
+  
+    margin-top: 20px;
+    cursor: pointer;
+  
+  
+  }
+  
+  
+  
+  
+  
+  .item-name {
+    text-align: center;
+    color: #333; /* Adjust text color as needed */
+    font-size: 0.9rem; /* Adjust font size as needed */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1199px) {
+    .grid-container {
+      grid-template-columns: repeat(4, 1fr); /* 4 items per row on smaller screens */
+    }
+  }
+  
+  @media (max-width: 991px) {
+    .grid-container {
+      grid-template-columns: repeat(3, 1fr); /* 3 items per row on medium screens */
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .grid-container {
+      grid-template-columns: repeat(2, 1fr); /* 2 items per row on small screens */
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .grid-container {
+      grid-template-columns: 1fr; /* 1 item per row on very small screens */
+    }
+  }
+  
+  .nav-tabs{
+    cursor: pointer;
+  }
+  
+  .gray-filter {
+    filter:grayscale(100%);
+    position:relative
+    }
+  
+    .check-icon {
+  opacity: 0;
+    }
+  
+    .addbtn,.red {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      padding: 0;
+      line-height: 26px;
+      text-align: center;
+      background-color: #101d2d;
+      border: 2px solid #fff;
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  
+    .red {
+    color:#ff6262
+    }
+  
+  
+  
+  
+    .basket-sidebar {
+    margin-top:160px;
+      width:400px;
+      top:10px;
+      right:10px;
+      background-color:#fdfbfb;
+      padding:10px;
+      border:1px solid #101d2d;
+      border-radius:5px;
+      box-shadow:0 2px 1px #222;
+      height: 673px;
+      }
+  
+      .basket-title {
+      text-align:center;
+      margin-bottom:35px;
+      margin-top:25px
+      }
+  
+      .basket-container {
+      flex-grow:1;
+      display:flex;
+      flex-direction:column
+      }
+  
+      .basket-list {
+      overflow-y:auto;
+      height:500px;
+  
+      }
+  
+      .basket-item {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:10px 0
+      }
+  
+      .item-separator {
+      height:1px;
+      background-color:#ccc;
+      margin:5px 0
+      }
+  
+      .basket-item-name {
+      flex-grow:1;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      font-size:16px;
+      padding-right:10px
+      }
+  
+      .item-separator {
+      border-top:1px solid #ccc;
+      margin:5px 20px
+      }
+  
+      .remove-item-btn {
+      border:none;
+      background:none;
+      cursor:pointer;
+      padding:5px;
+      font-size:14px;
+      color:#f44336
+      }
+  
+      .basket-item-image {
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      margin-right:10px
+      }
+  
+      .add-btn {
+      width:calc(100% - 20px);
+      padding:5px 10px;
+      margin:10px auto 0;
+      color:#fff;
+      font-size:1rem;
+      font-weight:400;
+      border-color:#0000;
+      cursor:pointer;
+      transition:all .2s ease;
+      background-color:#101d2d
+      }
+  
+      .basket-item .fas {
+      margin-left:auto
+      }
+  
+      @media (max-width: 991.98px) {
+      .basket-sidebar {
+      width:150px;
+      top:60px;
+      height:calc(100vh - 60px)
+      }
+  
+      
+  
+      .basket-item-image {
+      width:25px;
+      height:25px
+      }
+  
+      .basket-item {
+      margin-bottom:4px;
+      justify-content:space-between
+      }
+    }
+  .resto-stock{
+  
+    border: 1px solid #101d2d;
+    border-radius: 7px;
+    
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  .pagination .page-item.active .page-link {
+    background-color: #101d2d;
+    border-color: #101d2d;
+    color: white;
+  }
+  .list-group-item{
+    cursor: pointer;
+    
+  }
+  .list-group-item.list-group-item-action.active-supplier,
+  .list-group-item.list-group-item-action.active-supplier:hover {
+    background-color: #101d2d;
+    color: white;
+  }
+  .list-group i {
+  margin-top: 10px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #6495ED;
+  border-radius: 100%;
+  color: #FCFCFC;
+  align-items: flex-end;
+  margin-left: 230px;
+  }
+  .list-group {
+    max-height: 250px; /* Adjust height based on the total height of three items */
+    overflow-y: auto; /* Enables scrolling */
+    width: 100%; /* Ensures the width matches the parent or adjust as necessary */
+    
+  }
+  
+  .modal-backdrop {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+  }
+  
+  .custom-modal {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.2);
+    width: 50%;
+    max-width: 600px; /* Adjust the max-width as necessary */
+    max-height: 80vh;
+    position: relative;
+    overflow: hidden; /* Ensures no internal overflow is visible outside the modal */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .custom-modal-header {
+    position: relative; /* Ensure relative positioning for absolute child elements */
+    display: flex;
+    justify-content: center; /* Centers the title */
+    align-items: center;
+    padding: 10px 20px; /* Adjust padding as needed */
+  }
+  
+  .close {
+    position: absolute;
+    top: -20px; /* Adjust top and right as needed */
+    right: 5px;
+    border: none; /* Removes any default border */
+    background: none; /* Removes any default background */
+    font-size: 1.5rem; /* Adjust size as needed */
+    cursor: pointer; /* Makes it clear the element is clickable */
+    color: #333; /* Adjust color to match your design */
+  }
+  
+  .custom-modal-body {
+    flex: 1;
+    overflow-y: auto; /* Allows scrolling within the modal body */
+  }
+  
+  .custom-modal-body span ,
+  .custom-modal-header h3{
+  
+    color:#334c6b;
+  
+  }
+  .custom-modal-header h3{
+    font-family:"Playfair Display",serif;
+  
+    clear:both;
+    font-weight:700;
+  text-align: center;
+    color:#101d2d;
+  }
+  .custom-modal-body p {
+    color: #464646;
+  }
+  
+  .custom-modal-header, .custom-modal-footer {
+    border-color: #dee2e6;
+    padding: 10px;
+  }
+  
+  .custom-modal-footer  {
+  
+  margin-top: 15px;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centers the buttons vertically if the footer has larger height */
+    gap: 20px; /* Adjusts the space between the buttons */
+  
+  
+  
+  }
+  
+  
+  .supplier-details p {
+    font-size: 16px;            
+    color: #333;              
+    margin-bottom: 10px;       
+  }
+  
+  .supplier-details h6 {
+    margin-top: 20px;           
+    font-weight: bold;         
+  }
+  
+  .supplier-details ul {
+    list-style-type: none;     
+    padding: 0;                 
+  }
+  
+  .supplier-details li {
+    background-color: #ffffff;  
+    border: 1px solid #dee2e6;  
+    padding: 5px 10px;         
+    border-radius: 5px;        
+  }
+  .dropdown-header {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border: 1px solid #101d2d;
+    margin-top: 5px;
+    border-radius: 7px;
+  }
+  
+  .dropdown-header:hover {
+    background-color: #e7e7e7;
+  }
+  .dropdown-content {
+  
+    padding: 10px;
+    border: 1px solid #101d2d;
+    border-top: none;
+    border-radius: 7px;
+  }
+  
+  .dropdown-content ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .dropdown-content li {
+    padding: 5px 0;
+  }
+  
+  .dropdown-header:hover {
+    background-color: #e7e7e7;
+  }
+  
+  .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  color:#101d2d;
+  }
+  
+  .arrow.right {
+    transform: rotate(0deg); /* Point right when collapsed */
+  }
+  
+  .arrow.down {
+    transform: rotate(90deg); /* Point down when expanded */
+  }
+  
+  
+  
+  .basket-item {
+    transition: opacity 0.3s ease;
+  }
+  
+  .item-separator {
+    height: 1px;
+    background-color: #ccc;
+  }
+  
+  .family-header {
+    background-color: #6495ED;
+  
+  color: #FCFCFC;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 4px;
+  }
+  
+  .item-list {
+    list-style: none;
+    padding-left: 20px;
+  }
+  
+  .item-list li {
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .item-list li:last-child {
+    border-bottom: none;
+  }
+  
+  .item-image {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  .item-name {
+    vertical-align: middle;
+  }
+  
+  
+  .nav-tabs .nav-item {
+    margin-bottom: -1px;
+    font-size: 14px; /* Smaller font size */
+    flex: 4; /* Ensures each nav item takes equal space */
+    text-align: center; /* Centers the text inside each nav item */
+    margin-bottom: -1px;
+    font-size: 14px; /* Smaller font size */
+  }
+  
+  .nav-tabs .nav-link {
+    padding: 5px 10px; /* Reduce padding */
+    margin-right: 2px; /* Reduce margin between tabs */
+    font-size: 14px; /* Smaller font size */
+  }
+  
+  .nav-tabs .nav-link.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff #007bff #fff;
+  }
+  
+  .category-container .dropdown-header {
+    font-size: 14px; /* Smaller font size */
+    padding: 5px; /* Reduce padding */
+    cursor: pointer;
+  }
+  
+  .category-container .dropdown-content {
+    padding: 10px;
+  }
+  
+  .basket-sidebar .nav-tabs .nav-item .nav-link {
+    padding: 5px 10px; /* Reduce padding */
+    margin-right: 2px; /* Reduce margin between tabs */
+    font-size: 14px; /* Smaller font size */
+  }
+  
+  .basket-sidebar .nav-tabs .nav-link.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff #007bff #fff;
+  }
+  
+  
+  .nav-tabs{
+    border-bottom: 2px solid #101d2d;
+    margin-bottom: 15px;
+  
+  }
+  
+  .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent; /* Adds a transparent border */
+    padding: 10px; /* Adds padding for better touch */
+    background-color: #FFFFFF; /* Background color for non-active */
+    color: #101d2d; /* Text color */
+    border-radius: 5px 5px 0 0; /* Rounded corners at the top */
+  }
+  .nav-item .active{
+    border: 1px solid #101d2d;
+    background-color: #4e92db;
+    color: white;
+  }

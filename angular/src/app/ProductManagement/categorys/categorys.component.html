@@ -1,0 +1,88 @@
+<!-- Dashboard -->
+<div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+    <!-- Vertical Navbar -->
+    
+  
+    <!-- Main content -->
+    <div class="h-screen flex-grow-1 overflow-y-lg-auto" style="padding-top: 40px;">
+      <!-- Main -->
+      <main class="py-6 bg-surface-secondary">
+        <div class="container-fluid">
+          <!-- Suppliers Component -->
+          <div class="main-content">
+            <div class="container mt-4">
+              <!-- Add Category Button -->
+              <button class="btn btn-primary mb-3 add-category-btn" (click)="openCategoryModal(addCategoryModal)">Add Category</button>
+  
+              <!-- Categories Table -->
+              <div class="table-responsive">
+                <table class="table table-striped w-100">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Category Name</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let category of categories; let i = index">
+                      <th scope="row">{{ i + 1 }}</th>
+                      <td>{{ category.name }}</td>
+                      <td>
+                        <button class="btn btn-warning btn-sm me-2" (click)="openCategoryModal(updateCategoryModal, category)">Update</button>
+                        <button class="btn btn-danger btn-sm" (click)="deleteCategory(category.id)">Delete</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  
+  <!-- Add/Update Category Modal -->
+  <ng-template #addCategoryModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Add Category</h5>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="categoryForm">
+        <div class="form-group">
+          <label for="categoryName">Category Name</label>
+          <input id="categoryName" formControlName="name" class="form-control" placeholder="Enter category name" />
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Close</button>
+      <button type="button" class="btn btn-primary" (click)="submitCategory()">Add</button>
+    </div>
+  </ng-template>
+  
+  <ng-template #updateCategoryModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Update Category</h5>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="categoryForm">
+        <div class="form-group">
+          <label for="categoryName">Category Name</label>
+          <input id="categoryName" formControlName="name" class="form-control" placeholder="Enter category name" />
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Close</button>
+      <button type="button" class="btn btn-primary" (click)="submitCategory()">Update</button>
+    </div>
+  </ng-template>
+  
