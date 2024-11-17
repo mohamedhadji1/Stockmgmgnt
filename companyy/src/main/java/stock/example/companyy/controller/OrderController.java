@@ -29,6 +29,8 @@ public class OrderController {
 
     @PostMapping("/create")
     public Order Create(@RequestBody Order order) {
+        System.out.println(order);
+
         return serv.Create(order);
     }
 

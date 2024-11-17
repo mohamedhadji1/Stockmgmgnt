@@ -41,8 +41,17 @@ export class ProductsComponent {
         price:0,
         quantity:0,
         date:new Date(),
-        provider: new Provider(),
-        category: new Category()
+        provider: {
+          id: 0,
+          name: '',
+          address: '',
+          phoneNumber: '',
+          email: ''
+        },
+        category: {
+          id: 0,
+          name: ''
+        },
       }
     }
 
@@ -52,7 +61,7 @@ export class ProductsComponent {
         this.loadProviders();
         this.loadCategories();
     });
-    
+
 
   }
 
@@ -61,7 +70,7 @@ export class ProductsComponent {
       this.categories = data.filter(category => category != null);  // Filter out null values
     });
   }
-  
+
   loadProviders(): void {
     this.providerService.GetAll().subscribe((data: Provider[]) => {
       this.providers = data.filter(provider => provider != null);  // Filter out null values

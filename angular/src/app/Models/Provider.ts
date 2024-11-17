@@ -1,8 +1,8 @@
-export class Provider{
+export interface Provider{
 
-    id!:number;
-    name!:string;
-    address!:string;
-    phoneNumber!:string;
-    email!:string;
+    id:number;
+    name:string;
+    address:string;
+    phoneNumber:string;
+    email:string;
 }

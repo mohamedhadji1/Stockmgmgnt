@@ -6,7 +6,7 @@ export class Product{
     name!:string;
     quantity!:number;
     price!:number;
-    category!:Category;
+    category?:Category;
     date!: Date;
-    provider!:Provider;
+    provider?:Provider;
 }

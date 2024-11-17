@@ -23,7 +23,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { EditUserModalComponent } from './edit-user-modal/edit-user-modal.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RedirectComponent } from './redirect/redirect.component'; // Add this import
+import { RedirectComponent } from './redirect/redirect.component';
+import { ClaimManagmentComponent } from './claim-managment/claim-managment.component';
+import { AddClaimComponent } from './add-claim/add-claim.component'; // Add this import
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { RedirectComponent } from './redirect/redirect.component'; // Add this i
     UserListComponent,
     EditUserModalComponent,
     RedirectComponent,
+    ClaimManagmentComponent,
+    AddClaimComponent,
   ],
   imports: [
     BrowserModule,

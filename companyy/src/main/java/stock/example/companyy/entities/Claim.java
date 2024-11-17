@@ -23,7 +23,7 @@ public class Claim {
 
     private String message;
 
-    private List<product> products;
+    private List<Returns> returns;
 
 
     private Date date;

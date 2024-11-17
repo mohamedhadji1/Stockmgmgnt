@@ -10,41 +10,7 @@
             <h6>Manage Your Orders</h6>
           </div>
         </div>
-        <ul class="table-top-head">
-          <li>
-            <a data-bs-toggle="tooltip" data-bs-placement="top" title="Pdf"
-              ><img
-                src="https://dreamspos.dreamstechnologies.com/html/template/assets/img/icons/pdf.svg"
-                alt="img"
-            /></a>
-          </li>
-          <li>
-            <a data-bs-toggle="tooltip" data-bs-placement="top" title="Excel"
-              ><img
-                src="https://dreamspos.dreamstechnologies.com/html/template/assets/img/icons/excel.svg"
-                alt="img"
-            /></a>
-          </li>
-          <li>
-            <a data-bs-toggle="tooltip" data-bs-placement="top" title="Print"
-              ><i data-feather="printer" class="feather-rotate-ccw"></i
-            ></a>
-          </li>
-          <li>
-            <a data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"
-              ><i data-feather="rotate-ccw" class="feather-rotate-ccw"></i
-            ></a>
-          </li>
-          <li>
-            <a
-              data-bs-toggle="tooltip"
-              data-bs-placement="top"
-              title="Collapse"
-              id="collapse-header"
-              ><i data-feather="chevron-up" class="feather-chevron-up"></i
-            ></a>
-          </li>
-        </ul>
+
         <div class="page-btn">
           <a
             href="#"
@@ -158,12 +124,12 @@
                   <th>Date</th>
                   <th>TVA</th>
                   <th>Grand Total</th>
-                  
+
                   <th class="text-center">Action</th>
                 </tr>
               </thead>
               <tbody class="sales-list">
-                
+
                 <tr *ngFor="let o of orders">
                   <td>
                     <label class="checkboxs">
@@ -171,13 +137,18 @@
                       <span class="checkmarks"></span>
                     </label>
                   </td>
-                  <td>Alwin</td>
-                  <td>SL0106</td>
+                  <td>{{ o.client?.username }}</td>
+
+                  <td *ngIf="o.agent; else noAgent">{{ o.agent.username }}</td>
+                  <ng-template #noAgent>
+                    <td>No Agent</td>
+                  </ng-template>
+
                   <td>{{ o.date  | date:'MMMM d, yyyy' }}</td>
-                  
-                  <td>{{ o.tva }}</td>
-                  <td>{{ o.totalPrice }}</td>
-                  
+
+                  <td>{{ o.tva }} %</td>
+                  <td>{{ o.totalPrice }} TND</td>
+
                   <td class="text-center">
                     <a
                       class="action-set"
@@ -203,7 +174,8 @@
                           href="https://dreamspos.dreamstechnologies.com/html/template/edit-sales.html"
                           class="dropdown-item"
                           data-bs-toggle="modal"
-                          data-bs-target="#edit-sales-new"
+                          data-bs-target="#update-sales-modal"
+                          (click)="loadOrderForUpdate(o)"
                           ><i data-feather="edit" class="info-img"></i>Edit
                           Sale</a
                         >
@@ -245,7 +217,7 @@
                     </ul>
                   </td>
                 </tr>
-               
+
               </tbody>
             </table>
           </div>
@@ -276,12 +248,11 @@
                       <div class="input-blocks">
                         <label>Customer Name</label>
                         <select formControlName="client" class="form-control">
-                          <option value="">Choose</option>
-                          <!--<option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>-->
+                          <option *ngFor="let user of clientList" [ngValue]="user">{{ user.username }}</option>
                         </select>
                       </div>
                     </div>
-                
+
                     <div class="col-lg-4 col-sm-6 col-12">
                       <div class="input-blocks">
                         <label>Date</label>
@@ -291,18 +262,17 @@
                         </div>
                       </div>
                     </div>
-                
+
                     <div class="col-lg-4 col-sm-6 col-12">
                       <div class="input-blocks">
                         <label>Agent</label>
                         <select formControlName="agent" class="form-control">
-                          <option value="">Choose</option>
-                          <!--<option *ngFor="let agent of agents" [value]="agent.id">{{ agent.name }}</option>-->
+                          <option *ngFor="let agent of agentList" [ngValue]="agent">{{ agent.username }}</option>
                         </select>
                       </div>
                     </div>
                   </div>
-                
+
                   <!-- TVA Field -->
                   <div class="col-lg-4 col-sm-6 col-12">
                     <div class="input-blocks">
@@ -310,7 +280,7 @@
                       <input formControlName="tva" type="number" class="form-control" placeholder="Enter TVA" />
                     </div>
                   </div>
-                
+
                   <!-- Products -->
                   <div formArrayName="products" class="table-responsive no-pagination">
                     <table class="table datanew">
@@ -339,7 +309,7 @@
                     </table>
                     <button type="button" (click)="addProduct()">Add Product</button>
                   </div>
-                
+
                   <div class="row">
                     <div class="col-lg-12 text-end">
                       <button type="button" class="btn btn-cancel add-cancel me-3" data-bs-dismiss="modal">Cancel</button>
@@ -347,7 +317,7 @@
                     </div>
                   </div>
                 </form>
-                
+
               </div>
             </div>
           </div>
@@ -355,7 +325,105 @@
       </div>
     </div>
   </div>
-  
+
+  <div class="modal fade" id="update-sales-modal">
+    <div class="modal-dialog add-centered">
+      <div class="modal-content">
+        <div class="page-wrapper p-0 m-0">
+          <div class="content p-0">
+            <div class="modal-header border-0 custom-modal-header">
+              <div class="page-title">
+                <h4>Update Order</h4>
+              </div>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <form [formGroup]="orderEditForm" (ngSubmit)="onEditSubmit()">
+                  <div class="row">
+                    <div class="col-lg-4 col-sm-6 col-12">
+                      <div class="input-blocks">
+                        <label>Customer Name</label>
+                        <select formControlName="client" class="form-control">
+                          <option *ngFor="let user of clientList" [ngValue]="user">{{ user.username }}</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-6 col-12">
+                      <div class="input-blocks">
+                        <label>Date</label>
+                        <div class="input-groupicon calender-input">
+                          <i data-feather="calendar" class="info-img"></i>
+                          <input type="date" formControlName="date" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-6 col-12">
+                      <div class="input-blocks">
+                        <label>Agent</label>
+                        <select formControlName="agent" class="form-control">
+                          <option *ngFor="let agent of agentList" [value]="agent">{{ agent.username }}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- TVA Field -->
+                  <div class="col-lg-4 col-sm-6 col-12">
+                    <div class="input-blocks">
+                      <label>TVA (%)</label>
+                      <input formControlName="tva" type="number" class="form-control" placeholder="Enter TVA" />
+                    </div>
+                  </div>
+
+                  <!-- Products -->
+                  <div formArrayName="products" class="table-responsive no-pagination">
+                    <table class="table datanew">
+                      <thead>
+                        <tr>
+                          <th>Product</th>
+                          <th>Qty</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let product of productsEdit.controls; let i = index" [formGroupName]="i">
+                          <td>
+                            <select formControlName="productId" class="form-control">
+                              <option *ngFor="let product of productList" [value]="product.id">{{ product.name }}</option>
+                            </select>
+                          </td>
+                          <td>
+                            <input formControlName="quantity" type="number" class="form-control" placeholder="Quantity" />
+                          </td>
+                          <td>
+                            <button type="button" (click)="removeProduct(i)">Remove</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <button type="button" (click)="addProduct()">Add Product</button>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-12 text-end">
+                      <button type="button" class="btn btn-cancel add-cancel me-3" data-bs-dismiss="modal">Cancel</button>
+                      <button type="submit" class="btn btn-submit add-sale">Update</button>
+                    </div>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <div class="modal fade" id="sales-details-new">
   <div class="modal-dialog sales-details-modal">
@@ -1274,18 +1342,3 @@
   </div>
 </div>
 
-<div class="customizer-links" id="setdata">
-  <ul class="sticky-sidebar">
-    <li class="sidebar-icons">
-      <a
-        href="#"
-        class="navigation-add"
-        data-bs-toggle="tooltip"
-        data-bs-placement="left"
-        data-bs-original-title="Theme"
-      >
-        <i data-feather="settings" class="feather-five"></i>
-      </a>
-    </li>
-  </ul>
-</div>

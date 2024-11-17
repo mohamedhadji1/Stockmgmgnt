@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { AuthGuard } from './auth.guard';
 import { RedirectComponent } from './redirect/redirect.component';
+import { ClaimManagmentComponent } from './claim-managment/claim-managment.component';
+import { AddClaimComponent } from './add-claim/add-claim.component';
 
 const routes: Routes = [
   { path: 'home-page', component: HomePageComponent },
@@ -27,6 +29,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'customers', component: UserListComponent },
+  { path :'claims', component: ClaimManagmentComponent},
+  { path :'addclaim', component: AddClaimComponent}
 ];
 
 @NgModule({

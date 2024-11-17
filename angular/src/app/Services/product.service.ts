@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Category } from '../Models/Category';
 import { Product } from '../Models/Product';
 import { Order } from '../Models/Order';
+import { Claim } from '../Models/Claim';
 
 @Injectable({
   providedIn: 'root'
@@ -40,11 +41,24 @@ export class ProductService {
   }
 
   AddOrder(order:Order){
-    return this.http.post<Order>('http://localhost:8081/order/create',order);
-  }
+    console.log(order);
+    return this.http.post<Order>('http://localhost:8081/order/create', order);
+}
 
   GetOrders(){
     return this.http.get<Order[]>('http://localhost:8081/order/show');
+  }
+
+  UpdateOrder(order: Order){
+    return this.http.put<Order>('http://localhost:8081/order/update',order)
+  }
+
+  AddClaim(claim: Claim){
+    return this.http.post<Claim>('http://localhost:8081/claim/create',claim);
+  }
+
+  GetAllClaims(){
+    return this.http.get<Claim[]>('http://localhost:8081/claim/show');
   }
 
 }

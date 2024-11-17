@@ -33,16 +33,14 @@ export class CategorysComponent {
     });
   }
   // Open the modal
-  openCategoryModal(modalContent: any, category: any = null) {
+  openCategoryModal(category: any = null) {
     this.isUpdate = !!category; // Check if it's an update or add operation
     this.selectedCategory = category;
     this.categoryForm.reset();
-    
+    //this.categoryForm.patchValue({ name: category.name });
     if (this.isUpdate) {
       this.categoryForm.patchValue({ name: category.name });
     }
-
-    //this.modalService.open(modalContent, { ariaLabelledBy: 'modal-basic-title' });
   }
 
   // Add or Update Category
@@ -68,9 +66,9 @@ export class CategorysComponent {
 
   // Delete Category
   deleteCategory(categoryId: number) {
+    this.categories = this.categories.filter((category) => category.id !== categoryId);
     this.ps.DeleteCat(categoryId).subscribe((data)=>{
       console.log(data);
-      this.categories = this.categories.filter((category) => category.id !== categoryId);
     })
     
   }

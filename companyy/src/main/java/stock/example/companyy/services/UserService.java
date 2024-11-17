@@ -30,7 +30,7 @@ public class UserService {
     }
 
     public User createUser(User user) {
-        user.setRole(Role.valueOf("changeme"));
+        user.setRole(Role.valueOf("Client"));
         user.setId(autoIncrementUtil.getNextSequence("user_sequence"));
         return userRepo.save(user);
     }
