@@ -25,8 +25,6 @@ public class Order {
     private int id;
 
     private Date date;
-
-    //private List<product> products;
     private Map<Integer, Integer> products;
 
     private User client;
@@ -36,5 +34,5 @@ public class Order {
     private double tva;
     private double totalPrice;
 
-
+    private List<product> items;
 }

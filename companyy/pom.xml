@@ -10,7 +10,7 @@
     </parent>
     <groupId>stock.example</groupId>
     <artifactId>companyy</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>companyy</name>
     <description>companyy</description>
     <url/>

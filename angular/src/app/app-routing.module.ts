@@ -19,7 +19,7 @@ import { AddClaimComponent } from './add-claim/add-claim.component';
 
 const routes: Routes = [
   { path: 'home-page', component: HomePageComponent },
-  { path: '', canActivate: [AuthGuard], component: RedirectComponent }, // Use a dummy component for redirection
+  //{ path: '', canActivate: [AuthGuard], component: RedirectComponent }, // Use a dummy component for redirection
   { path: 'providers', component: ProvidersManagementComponent },
   { path: 'products-page', component: ProductsPageComponent },
   { path: 'facture-page', component: FacturePageComponent },

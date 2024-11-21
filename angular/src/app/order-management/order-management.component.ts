@@ -6,6 +6,7 @@ import { Order } from '../Models/Order';
 import { RegisterService } from '../Services/register-service.service';
 import { User } from '../Models/User';
 import { Role } from '../Models/Role.enum';
+import { DocumentService } from '../Services/document.service';
 
 @Component({
   selector: 'app-order-management',
@@ -23,10 +24,10 @@ export class OrderManagementComponent {
   orderEditForm: FormGroup;
 
 
-  constructor(private fb: FormBuilder, private productService: ProductService, private userService: RegisterService) {
+  constructor(private fb: FormBuilder, private productService: ProductService, private userService: RegisterService, private documentService: DocumentService) {
     this.orderForm = this.fb.group({
       client: ['',Validators.required],
-      agent: ['',Validators.required],
+      agent: [null],
       date: [new Date(), Validators.required],
       tva: [19, Validators.required],
       products: this.fb.array([this.createProductFormGroup()]) // Initialize the FormArray for products
@@ -60,8 +61,7 @@ export class OrderManagementComponent {
       // Filter users by role
       this.clientList = users.filter(user => user.role === Role.Client);
       this.agentList = users.filter(user => user.role === Role.DeliveryAgent);
-      console.log("Clients: ",this.clientList);
-      console.log("Agents: ", this.agentList);
+      console.log("Clients",this.clientList)
     });
     this.addProduct(); // Add the first product entry
   }
@@ -107,9 +107,11 @@ export class OrderManagementComponent {
   onSubmit() {
     console.log("Form Submission Triggered");
     console.log(this.orderForm.value);
+    console.log("Submit Started");
 
     if (this.orderForm.valid) {
       console.log("Form is valid!");
+
       // Create the order object
       this.order = {
         id: 0,
@@ -122,8 +124,24 @@ export class OrderManagementComponent {
           this.orderForm.value.products.map(
             (item: { productId: any; quantity: number }) => [Number(item.productId), item.quantity] // Cast productId to number
           )
-        )
+        ),
+        items:[]
       };
+
+      // filling items list
+
+      Array.from(this.order.products.entries()).map(([productId, quantity]) => {
+        // Find the product in the products list using its ID
+        const product = this.productList.find(prod => prod.id === productId);
+
+        // Return the product with updated quantity if found, otherwise return null
+        if (product) {
+          product.quantity = quantity
+          this.order.items.push(product);
+        }
+
+      })
+
 
       // Step 1: Check Product Availability
       let allProductsValid = true; // Track if all products have sufficient quantities
@@ -260,5 +278,47 @@ export class OrderManagementComponent {
     return this.orderEditForm.get('products') as FormArray;
   }
 
+  generateDocument(invoice : Order) {
+
+
+    const requestBody = {
+      "document": "54sp501sH8U2vFFP4vpH",
+      "apiKey": "YHFAU6I-3VBE3II-V6AYTGI-YQE3LYQ",
+      format: 'pdf',
+      data: {
+        date: invoice.date,
+        client: invoice.client?.username,
+        agent: invoice.agent ? invoice.agent.username : 'No delivery agent', // Check if agent is null
+        items: invoice.items.map(item => ({
+          product: item.name, // Assuming the product has a 'name' field
+          quantity: item.quantity, // Use the updated quantity from the order
+          price: item.price, // Assuming the product has a 'price' field
+        })),
+        totalPrice: invoice.totalPrice,
+      },
+    };
+
+    this.documentService.generateDocument(requestBody).subscribe(
+      (response) => {
+        if (response.status === 200 && response.data) {
+          const downloadLink = response.data;
+          this.downloadDocument(downloadLink);
+        } else {
+          console.error('Failed to generate document:', response.message);
+        }
+      },
+      (error) => {
+        console.error('Error generating document:', error);
+      }
+    );
+  }
+
+  downloadDocument(url: string) {
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'GeneratedDocument.docx'; // Default name for the file
+    link.target = '_blank';
+    link.click();
+  }
 
 }

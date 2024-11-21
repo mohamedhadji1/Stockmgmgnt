@@ -3,7 +3,7 @@ import { Provider } from "./Provider";
 
 export class Product{
     id!:number;
-    name!:string;
+    name?:string;
     quantity!:number;
     price!:number;
     category?:Category;

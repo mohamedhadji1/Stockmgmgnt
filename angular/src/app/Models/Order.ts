@@ -9,4 +9,5 @@ export class Order {
     agent: User | undefined;
     tva!:number;
     totalPrice!:number
+    items: Product[] = [];
   }

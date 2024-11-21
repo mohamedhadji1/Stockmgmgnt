@@ -10,7 +10,7 @@
             <h6>Create new Claim</h6>
           </div>
         </div>
-        
+
       </div>
 
       <form [formGroup]="addClaimForm" (ngSubmit)="onSubmit()">
@@ -48,12 +48,12 @@
                           <label>Client</label>
                           <select class="form-control" formControlName="client">
                             <option *ngFor="let user of users" [ngValue]="user">
-                              {{ user.username }}
+                              {{ user?.username }}
                             </option>
                           </select>
                         </div>
                       </div>
-      
+
                       <!-- Message -->
                       <div class="col-lg-12 col-sm-12 col-12">
                         <div class="input-blocks">
@@ -61,7 +61,7 @@
                           <textarea class="form-control" rows="3" formControlName="message"></textarea>
                         </div>
                       </div>
-      
+
                       <!-- Returns Section -->
                       <div formArrayName="returns">
                         <div *ngFor="let returnControl of returns.controls; let i=index" [formGroupName]="i">
@@ -77,7 +77,7 @@
                                 </select>
                               </div>
                             </div>
-      
+
                             <!-- Quantity -->
                             <div class="col-lg-4 col-sm-4 col-12">
                               <div class="input-blocks">
@@ -85,7 +85,7 @@
                                 <input type="number" class="form-control" formControlName="quantity" />
                               </div>
                             </div>
-      
+
                             <!-- Delete Button -->
                             <div class="col-lg-2 col-sm-2 col-12 d-flex align-items-center">
                               <button type="button" (click)="removeReturn(i)" class="btn btn-danger">
@@ -95,7 +95,7 @@
                           </div>
                         </div>
                       </div>
-      
+
                       <!-- Add More Returns -->
                       <div class="col-lg-12">
                         <button type="button" (click)="addReturn()" class="btn btn-secondary">
@@ -118,7 +118,7 @@
           </div>
         </div>
       </form>
-      
+
     </div>
   </div>
 </div>
